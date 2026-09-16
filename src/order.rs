@@ -1,4 +1,4 @@
-use crate::securities::Security;
+use neko_securities::Security;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Side {

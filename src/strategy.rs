@@ -1,4 +1,4 @@
-use crate::securities::{Position, Equity, CASH, EQUITY};
+use neko_securities::{Position, Equity, CASH, EQUITY};
 use crate::order::{Order, OrderType, Side};
 
 pub trait Strategy {

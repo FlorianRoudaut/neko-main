@@ -1,6 +1,4 @@
 
-mod securities;
-mod currency;
 mod strategy;
 mod backtest_runner;
 mod order;
@@ -11,8 +9,8 @@ pub use crate::backtest_runner::BacktestRunner;
 #[cfg(test)]
 mod backtesting_tests {
     use super::*;
-    use crate::securities::{Position, Cash};
-    use crate::currency::{get_currency, USD};
+    use neko_securities::{Position, Cash};
+    use neko_securities::currency::{get_currency, USD};
 
     #[test]
     fn simplest_backtesting_test() {
