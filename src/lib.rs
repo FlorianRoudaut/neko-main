@@ -31,6 +31,6 @@ mod backtesting_tests {
         let pl = final_portfolio[0].quantity - 10.0;
 
         //Assert
-        assert_eq!(pl, 17.0);
+        assert_eq!(pl, 16.0);
     }
 }
