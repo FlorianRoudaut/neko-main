@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package neko;
+
+message Key {
+    string id = 1;
+    uint64 version = 2;
+    string unique_name = 3;
+}
+
+message Stock {
+    Key key = 1;
+    string name = 2;
+    string bbg_id = 3;
+    string cusip = 4;
+    string isin = 5;
+    string ibkr_contract_id = 6;
+    repeated string exchange_ids = 7;
+}
+
+message StockList {
+    repeated Stock stocks = 1;
+}
