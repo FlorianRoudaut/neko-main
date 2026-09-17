@@ -9,9 +9,5 @@ neko-ibkr-api   = { git = "https://github.com/FlorianRoudaut/neko-ibkr-api",   b
 uuid = { version = "1", features = ["v4", "serde"] }
 prost = "0.13"
 
-[build-dependencies]
-prost-build = "0.13"
-protox = "0.7"
-
 [patch."https://github.com/FlorianRoudaut/neko-securities"]
 neko-securities = { path = "../neko-securities" }
