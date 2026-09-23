@@ -6,8 +6,16 @@ edition = "2024"
 [dependencies]
 neko-securities = { git = "https://github.com/FlorianRoudaut/neko-securities", branch = "main" }
 neko-ibkr-api   = { git = "https://github.com/FlorianRoudaut/neko-ibkr-api",   branch = "main" }
-uuid = { version = "1", features = ["v4", "serde"] }
+neko-tech-localstorage = { git = "https://github.com/FlorianRoudaut/neko-tech-localstorage", branch = "main" }
+neko-tech-persistence  = { git = "https://github.com/FlorianRoudaut/neko-tech-persistence.git", branch = "main" }
 prost = "0.13"
+uuid = { version = "1", features = ["v4"] }
 
 [patch."https://github.com/FlorianRoudaut/neko-securities"]
 neko-securities = { path = "../neko-securities" }
+
+[patch."https://github.com/FlorianRoudaut/neko-tech-localstorage"]
+neko-tech-localstorage = { path = "../neko-tech-localstorage/" }
+
+[patch."https://github.com/FlorianRoudaut/neko-tech-persistence.git"]
+neko-tech-persistence = { path = "../neko-tech-persistence/" }
