@@ -3,6 +3,27 @@ use neko_marketdata::{MarketData, Step, to_log_return_series, compute_stats, nor
 use neko_tech_localstorage::LocalFileRepository;
 use neko_tech_persistence::Repository;
 
+fn timestamp_to_date(ts: u32) -> String {
+    let days_per_month = [31u32, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let mut days = ts / 86400;
+    let mut year = 1970u32;
+    loop {
+        let days_in_year = if year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) { 366 } else { 365 };
+        if days < days_in_year { break; }
+        days -= days_in_year;
+        year += 1;
+    }
+    let leap = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+    let mut month = 1u32;
+    for &dim in &days_per_month {
+        let dim = if month == 2 && leap { 29 } else { dim };
+        if days < dim { break; }
+        days -= dim;
+        month += 1;
+    }
+    format!("{:04}-{:02}-{:02}", year, month, days + 1)
+}
+
 pub fn frequency_distribution_analysis() {
     let data_dir = Path::new("../data");
     let marketdata_repo: LocalFileRepository<MarketData> = LocalFileRepository::<MarketData>::load(data_dir)
