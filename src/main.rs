@@ -22,17 +22,17 @@ fn main() {
     let strike:f64 = 102.0;
     let threshold = strike.ln() - price.ln();
 
+    let params = MonteCarloParameters {
+        paths_number: n_paths,
+        steps_number: n_steps,
+        mean: 0.0,
+        std_dev: std,
+        seed,
+        batch_size,
+    };
     let mut count = 0;
-    for batch in 0..n_paths / batch_size {
-        // Each batch needs its own seed, otherwise all batches would draw the same paths
-        let params = MonteCarloParameters {
-            paths_number: batch_size,
-            steps_number: n_steps,
-            mean: 0.0,
-            std_dev: std,
-            seed: seed + batch as u64,
-        };
-        for path in generate_paths(&params) {
+    generate_paths(&params, |batch| {
+        for path in batch {
             for step in 0..n_steps {
                 if path.returns[step] > threshold {
                     count += 1;
@@ -40,7 +40,7 @@ fn main() {
                 }
             }
         }
-    }
+    });
 
     println!("{} out of {} paths have one value above {}", count, n_paths, threshold);
     let proba = first_passage_probability(price , strike, n_steps as f64, 0.0, std);
