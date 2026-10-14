@@ -1,5 +1,6 @@
 use std::path::Path;
-use neko_marketdata::{MarketData, Step, to_log_return_series, compute_stats, normal_cdf_general};
+use neko_marketdata::{MarketData, Step, to_log_return_series};
+use neko_math::{compute_stats, normal_cdf_general};
 use neko_tech_localstorage::LocalFileRepository;
 use neko_tech_persistence::Repository;
 
@@ -31,7 +32,7 @@ pub fn frequency_distribution_analysis() {
     let loaded_md = marketdata_repo.read_all();
     let log_returns = to_log_return_series("AAPL log returns", Step::Day1, &loaded_md);
 
-    let stats = compute_stats(&log_returns).expect("Not enough data to compute stats");
+    let stats = compute_stats(&log_returns.values).expect("Not enough data to compute stats");
     println!("Returns mean {} and std {}", stats.mean, stats.std);
 
     let returns = &log_returns.values;

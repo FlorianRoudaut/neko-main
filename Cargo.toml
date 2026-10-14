@@ -12,6 +12,7 @@ neko-tech-persistence  = { git = "https://github.com/FlorianRoudaut/neko-tech-pe
 prost = "0.13"
 textplots = "0.8"
 uuid = { version = "1", features = ["v4"] }
+neko-math        = { git = "https://github.com/FlorianRoudaut/neko-math",        branch = "main" }
 
 [patch."https://github.com/FlorianRoudaut/neko-securities"]
 neko-securities = { path = "../neko-securities" }
@@ -24,3 +25,6 @@ neko-tech-localstorage = { path = "../neko-tech-localstorage/" }
 
 [patch."https://github.com/FlorianRoudaut/neko-tech-persistence.git"]
 neko-tech-persistence = { path = "../neko-tech-persistence/" }
+
+[patch."https://github.com/FlorianRoudaut/neko-math"]
+neko-math = { path = "../neko-math" }
